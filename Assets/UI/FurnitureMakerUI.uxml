@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=d29dbe24f68b907428d64bd33353b61d&amp;type=3#CommonStyles"/>
+    <ui:VisualElement name="main" style="flex-grow: 0; width: 500px; height: 600px; background-color: rgb(127, 112, 138); border-bottom-width: 4px; border-right-width: 4px; border-left-color: rgb(105, 79, 98); border-right-color: rgb(105, 79, 98); border-top-color: rgb(105, 79, 98); border-bottom-color: rgb(105, 79, 98); font-size: 24px; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px; transition-duration: 0.5s; transition-timing-function: ease-in-out-sine;">
+        <ui:VisualElement name="headerContainer" style="flex-grow: 0; flex-direction: row; justify-content: space-between;">
+            <ui:Label text="Add Furniture" name="header" class="text-headline" style="-unity-font-style: bold;"/>
+            <ui:Button text="-" name="minimizeButton"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="characteristicsWrapper" style="flex-grow: 1;">
+            <ui:TextField label="Name" placeholder-text="Hammok" name="nameField"/>
+            <ui:EnumField label="Shape" value="Rectangle" type="Shape, Assembly-CSharp" name="shapeField"/>
+            <ui:VisualElement name="colorContainer" style="flex-grow: 0; flex-direction: row; align-items: center; align-content: center; justify-content: space-between;">
+                <ui:Label text="Color"/>
+                <ui:Button text="" name="colorButton" style="width: 300px; height: 40px; align-self: center;"/>
+            </ui:VisualElement>
+            <ui:Label text="Size (in meters)" name="sizeLabel"/>
+            <ui:VisualElement name="sizeContainer" style="flex-grow: 1;"/>
+            <ui:Label text="" name="errorLabel" style="-unity-font-style: bold; -unity-text-align: upper-center; color: rgb(232, 59, 59);"/>
+            <ui:Button text="Add" name="addFurnitureButton"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

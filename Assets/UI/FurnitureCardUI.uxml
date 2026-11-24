@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=d29dbe24f68b907428d64bd33353b61d&amp;type=3#CommonStyles"/>
+    <ui:VisualElement name="main" style="flex-grow: 0; width: 500px; height: 400px; background-color: rgb(127, 112, 138); border-bottom-width: 4px; border-right-width: 4px; border-left-color: rgb(105, 79, 98); border-right-color: rgb(105, 79, 98); border-top-color: rgb(105, 79, 98); border-bottom-color: rgb(105, 79, 98); font-size: 24px; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px; transition-duration: 0.5s; transition-timing-function: ease-in-out-sine; bottom: 0; position: absolute; opacity: 0; display: none;"/>
+</ui:UXML>

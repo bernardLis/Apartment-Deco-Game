@@ -1,0 +1,19 @@
+:root {
+}
+
+.text-headline {
+    font-size: 42px;
+}
+
+.common__rotate-clockwise-button {
+    width: 50px;
+    height: 50px;
+    background-image: url("project://database/Assets/Plugins/Icons/icon_arrow_rotate.png?fileID=2800000&guid=fa4f6b90d48544349b42773241f324b9&type=3#icon_arrow_rotate");
+}
+
+.common__rotate-counter-clockwise-button {
+    width: 50px;
+    height: 50px;
+    background-image: url("project://database/Assets/Plugins/Icons/icon_arrow_rotate.png?fileID=2800000&guid=fa4f6b90d48544349b42773241f324b9&type=3#icon_arrow_rotate");
+    rotate: 180deg;
+}
