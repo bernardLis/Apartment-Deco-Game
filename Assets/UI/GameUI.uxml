@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=d29dbe24f68b907428d64bd33353b61d&amp;type=3#CommonStyles"/>
+    <ui:VisualElement name="main" style="position: relative;">
+        <ui:VisualElement name="iconContainer" style="flex-grow: 1; position: absolute; top: 12px; right: 0; flex-direction: row; width: 450px; height: 62px;">
+            <ui:Button text="" name="labelsButton" class="common__menu-button" style="background-image: url(&quot;project://database/Assets/Plugins/Icons/icon_button_l.png?fileID=2800000&amp;guid=6d46fbe1f51adab4a9a6877ac365875f&amp;type=3#icon_button_l&quot;);"/>
+            <ui:Button text="" name="controlsButton" class="common__menu-button" style="background-image: url(&quot;project://database/Assets/Plugins/Icons/icon_steering_wheel.png?fileID=2800000&amp;guid=652cf344748556941a09351f97b803ed&amp;type=3#icon_steering_wheel&quot;);"/>
+            <ui:Button text="" name="saveButton" class="common__menu-button" style="background-image: url(&quot;project://database/Assets/Plugins/Icons/icon_save.png?fileID=2800000&amp;guid=92134fb7796bbb345b056df0750d418e&amp;type=3#icon_save&quot;);"/>
+            <ui:Button text="" name="muteButton" class="common__mute-icon common__menu-button"/>
+            <ui:Button text="" name="copyButton" class="common__menu-button" style="background-image: url(&quot;project://database/Assets/Plugins/Icons/icon_key.png?fileID=2800000&amp;guid=3db46aba4b8eb1e489a9133b26a815cd&amp;type=3#icon_key&quot;);"/>
+            <ui:Button text="" name="loadButton" class="common__menu-button" style="background-image: url(&quot;project://database/Assets/Plugins/Icons/icon_lock.png?fileID=2800000&amp;guid=ad3f5026bcf5b3741b11251f3eec0024&amp;type=3#icon_lock&quot;);"/>
+        </ui:VisualElement>
+        <ui:Label text="Label" name="infoLabel" picking-mode="Ignore" style="align-items: center; align-self: center; top: 1000px; font-size: 48px; -unity-font-style: bold; -unity-text-align: upper-center; opacity: 0; transition-duration: 0.25s; transition-timing-function: ease-in-out;"/>
+    </ui:VisualElement>
+</ui:UXML>

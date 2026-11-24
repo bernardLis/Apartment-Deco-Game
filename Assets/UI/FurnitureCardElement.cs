@@ -16,6 +16,12 @@ namespace ApartmentDeco
             AddSizeContainer();
             AddColorButton();
             AddRotateButtons();
+
+            Button destroyButton = new();
+            destroyButton.AddToClassList("common__destroy-button");
+            destroyButton.AddToClassList("common__menu-button");
+            Add(destroyButton);
+            destroyButton.clickable.clicked += _furnitureController.DestroySelf;
         }
 
         void AddNameField()
@@ -88,7 +94,7 @@ namespace ApartmentDeco
             _colorPicker = new(_furnitureController.Furniture.Color);
             Add(_colorPicker);
             _colorPicker.style.position = Position.Absolute;
-            _colorPicker.style.left = resolvedStyle.width+15;
+            _colorPicker.style.left = resolvedStyle.width + 15;
             _colorPicker.style.top = -160;
             _colorPicker.OnColorChange += ColorChanged;
         }

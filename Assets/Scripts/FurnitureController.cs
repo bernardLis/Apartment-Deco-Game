@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using Shapes;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 namespace ApartmentDeco
 {
@@ -11,6 +13,7 @@ namespace ApartmentDeco
     {
         [SerializeField] AudioClip _pickUpSound;
         [SerializeField] AudioClip _dropSound;
+        [SerializeField] AudioClip _destroySound;
 
         public Furniture Furniture;
 
@@ -33,6 +36,8 @@ namespace ApartmentDeco
         bool _wasDragged;
         IEnumerator _dragSetterCoroutine;
 
+        public event Action OnDestroy;
+
         public void Initialize(Furniture furniture)
         {
             _camera = Camera.main;
@@ -43,6 +48,9 @@ namespace ApartmentDeco
 
             _audioSource = GetComponent<AudioSource>();
             ParseShape(furniture);
+
+            transform.DOMove(furniture.Position, 0.5f).SetEase(Ease.OutBack);
+            Rotate(furniture.Rotation.z);
 
             if (_main != null) SetLabel();
         }
@@ -108,27 +116,27 @@ namespace ApartmentDeco
         {
             _main = root.Q<VisualElement>("main");
             _nameLabel = _main.Q<Label>("text");
-            _main.Add(_nameLabel);
 
             if (Furniture == null) return;
-            if (Furniture.Name.Length == 0) return;
+            //    if (Furniture.Name.Length == 0) return;
             SetLabel();
         }
 
         void SetLabel()
         {
-            _nameLabel.text = Furniture.Name;
+            if (_nameLabel != null)
+                _nameLabel.text = Furniture.Name;
         }
 
         void ParseShape(Furniture furniture)
         {
             SetPanelSize(furniture);
 
-            if (furniture.Shape == Shape.Rectangle)
+            if (furniture.Shape == Shape.Rectangle || furniture.Shape == Shape.L)
             {
                 _rectangle = gameObject.AddComponent<Rectangle>();
-                _rectangle.Height = furniture.Height;
-                _rectangle.Width = furniture.Width;
+                DOTween.To(x => _rectangle.Width = x, 0, furniture.Width, 0.25f).SetEase(Ease.OutBack);
+                DOTween.To(x => _rectangle.Height = x, 0, furniture.Height, 0.25f).SetEase(Ease.OutBack);
                 _rectangle.Color = furniture.Color;
                 _boxCollider = gameObject.AddComponent<BoxCollider2D>();
                 _boxCollider.size = new Vector2(furniture.Width, furniture.Height);
@@ -138,7 +146,7 @@ namespace ApartmentDeco
             if (furniture.Shape == Shape.Circle)
             {
                 _disc = gameObject.AddComponent<Disc>();
-                _disc.Radius = furniture.Width * 0.5f;
+                DOTween.To(x => _disc.Radius = x, 0, furniture.Width * 0.5f, 0.25f).SetEase(Ease.OutBack);
                 _disc.Color = furniture.Color;
                 _boxCollider = gameObject.AddComponent<BoxCollider2D>();
                 _boxCollider.size = new Vector2(furniture.Width, furniture.Width);
@@ -147,18 +155,10 @@ namespace ApartmentDeco
             if (furniture.Shape == Shape.L)
             {
                 // draw l shape with 2 rectangles
-                _rectangle = gameObject.AddComponent<Rectangle>();
-                _rectangle.Height = furniture.Height;
-                _rectangle.Width = furniture.Width;
-                _rectangle.Color = furniture.Color;
-
-                _boxCollider = gameObject.AddComponent<BoxCollider2D>();
-                _boxCollider.size = new Vector2(furniture.Width, furniture.Height);
-
                 _leg = gameObject.AddComponent<Rectangle>();
                 _leg.transform.localPosition = new Vector3(0, furniture.Height * 0.5f, 0);
-                _leg.Height = furniture.LegHeight;
-                _leg.Width = furniture.LegWidth;
+                DOTween.To(x => _leg.Width = x, 0, furniture.LegWidth, 0.25f).SetEase(Ease.OutBack);
+                DOTween.To(x => _leg.Height = x, 0, furniture.LegHeight, 0.25f).SetEase(Ease.OutBack);
                 _leg.Color = furniture.Color;
 
                 _boxCollider1 = gameObject.AddComponent<BoxCollider2D>();
@@ -247,6 +247,27 @@ namespace ApartmentDeco
                         RotateMode.WorldAxisAdd);
                     Furniture.SetRotation(transform.rotation.eulerAngles);
                 });
+        }
+
+
+        public void ToggleLabel()
+        {
+            if (_nameLabel != null)
+                _nameLabel.style.display = _nameLabel.style.display == DisplayStyle.None
+                    ? DisplayStyle.Flex
+                    : DisplayStyle.None;
+        }
+
+
+        public void DestroySelf()
+        {
+            OnDestroy?.Invoke();
+
+            FurnitureCardManager.Instance.HideCard();
+            _audioSource.pitch = Random.Range(0.8f, 1.2f);
+            _audioSource.PlayOneShot(_destroySound);
+
+            transform.DOScale(0, 1f).OnComplete(() => Destroy(gameObject));
         }
     }
 }

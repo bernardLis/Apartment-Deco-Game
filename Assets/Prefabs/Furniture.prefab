@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApartmentDeco.FurnitureController
   _pickUpSound: {fileID: 8300000, guid: 6528ef4c5fac1414db07d5be2837bc2f, type: 3}
   _dropSound: {fileID: 8300000, guid: 5888901a70ebc40bf84d8bb3fb50513c, type: 3}
+  _destroySound: {fileID: 8300000, guid: abb6b9d20f32e40a08a650da94c4f280, type: 3}
   Furniture: {fileID: 0}
 --- !u!50 &4614422420877355044
 Rigidbody2D:

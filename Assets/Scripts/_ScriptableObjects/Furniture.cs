@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Furniture")]
@@ -15,8 +16,8 @@ public class Furniture : BaseScriptableObject
     [FormerlySerializedAs("LegLength")]
     public float LegHeight;
 
-    public Vector2 Position;
-    public Vector2 Rotation;
+    public Vector3 Position;
+    public Vector3 Rotation;
 
     public void SetName(string newName)
     {
@@ -57,7 +58,59 @@ public class Furniture : BaseScriptableObject
     {
         Rotation = newRotation;
     }
+
+    #region Serialization
+
+    public FurnitureData SerializeSelf()
+    {
+        FurnitureData data = new FurnitureData
+        {
+            Id = Id,
+            Position = Position,
+            Rotation = Rotation,
+            Name = Name,
+            Color = Color,
+            ShapeIndex = (int)Shape,
+            Width = Width,
+            Height = Height,
+            LegWidth = LegWidth,
+            LegHeight = LegHeight
+        };
+
+        return data;
+    }
+
+    public void LoadFromData(FurnitureData data)
+    {
+        Position = data.Position;
+        Rotation = data.Rotation;
+        Name = data.Name;
+        Color = data.Color;
+        Shape = (Shape)data.ShapeIndex;
+        Width = data.Width;
+        Height = data.Height;
+        LegWidth = data.LegWidth;
+        LegHeight = data.LegHeight;
+    }
+
+    #endregion
 }
+
+[Serializable]
+public struct FurnitureData
+{
+    public string Id;
+    public string Name;
+    public Vector3 Position;
+    public Vector3 Rotation;
+    public Color Color;
+    public int ShapeIndex;
+    public float Width;
+    public float Height;
+    public float LegWidth;
+    public float LegHeight;
+}
+
 
 public enum Shape
 {
