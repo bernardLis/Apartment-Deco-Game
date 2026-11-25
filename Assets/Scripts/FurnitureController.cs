@@ -155,8 +155,15 @@ namespace ApartmentDeco
             if (furniture.Shape == Shape.L)
             {
                 // draw l shape with 2 rectangles
-                _leg = gameObject.AddComponent<Rectangle>();
-                _leg.transform.localPosition = new Vector3(0, furniture.Height * 0.5f, 0);
+                GameObject legGameObject = new GameObject();
+                legGameObject.transform.SetParent(transform);
+                legGameObject.transform.localPosition =
+                    new Vector3(-Furniture.LegWidth / 2, Furniture.LegWidth - furniture.Width, 0);
+                legGameObject.transform.localRotation = Quaternion.Euler(0, 0, 90);
+
+                _leg = legGameObject.AddComponent<Rectangle>();
+                _leg.SortingOrder = -1;
+
                 DOTween.To(x => _leg.Width = x, 0, furniture.LegWidth, 0.25f).SetEase(Ease.OutBack);
                 DOTween.To(x => _leg.Height = x, 0, furniture.LegHeight, 0.25f).SetEase(Ease.OutBack);
                 _leg.Color = furniture.Color;
@@ -267,7 +274,10 @@ namespace ApartmentDeco
             _audioSource.pitch = Random.Range(0.8f, 1.2f);
             _audioSource.PlayOneShot(_destroySound);
 
-            transform.DOScale(0, 1f).OnComplete(() => Destroy(gameObject));
+            transform.DOShakeScale(0.25f).OnComplete(() =>
+            {
+                transform.DOScale(0, 0.25f).OnComplete(() => Destroy(gameObject));
+            });
         }
     }
 }

@@ -12,7 +12,7 @@
                 <ui:Label text="Color"/>
                 <ui:Button text="" name="colorButton" style="width: 300px; height: 40px; align-self: center;"/>
             </ui:VisualElement>
-            <ui:Label text="Size (in meters)" name="sizeLabel"/>
+            <ui:Label text="Size (in cm)" name="sizeLabel"/>
             <ui:VisualElement name="sizeContainer" style="flex-grow: 1;"/>
             <ui:Label text="" name="errorLabel" style="-unity-font-style: bold; -unity-text-align: upper-center; color: rgb(232, 59, 59);"/>
             <ui:Button text="Add" name="addFurnitureButton"/>

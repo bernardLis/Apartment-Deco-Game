@@ -35,28 +35,28 @@ namespace ApartmentDeco
         void AddSizeContainer()
         {
             FloatField widthField = new("Diameter");
-            widthField.value = _furnitureController.Furniture.Width;
+            widthField.value = _furnitureController.Furniture.Width * 100;
             Add(widthField);
-            widthField.RegisterValueChangedCallback(e => _furnitureController.SetWidth(e.newValue));
+            widthField.RegisterValueChangedCallback(e => _furnitureController.SetWidth(e.newValue * 0.01f));
 
             if (_furnitureController.Furniture.Shape == Shape.Circle) return;
             widthField.label = "Width";
             FloatField heightField = new("Height");
-            heightField.value = _furnitureController.Furniture.Height;
+            heightField.value = _furnitureController.Furniture.Height * 100;
             Add(heightField);
-            heightField.RegisterValueChangedCallback(e => _furnitureController.SetHeight(e.newValue));
+            heightField.RegisterValueChangedCallback(e => _furnitureController.SetHeight(e.newValue * 0.01f));
 
             if (_furnitureController.Furniture.Shape == Shape.Rectangle) return;
 
             FloatField legWidthField = new("Leg Width");
-            legWidthField.value = _furnitureController.Furniture.LegWidth;
+            legWidthField.value = _furnitureController.Furniture.LegWidth * 100;
             Add(legWidthField);
-            legWidthField.RegisterValueChangedCallback(e => _furnitureController.SetLegWidth(e.newValue));
+            legWidthField.RegisterValueChangedCallback(e => _furnitureController.SetLegWidth(e.newValue * 0.01f));
 
             FloatField legHeightField = new("Leg Height");
-            legHeightField.value = _furnitureController.Furniture.LegHeight;
+            legHeightField.value = _furnitureController.Furniture.LegHeight * 100;
             Add(legHeightField);
-            legHeightField.RegisterValueChangedCallback(e => _furnitureController.SetLegHeight(e.newValue));
+            legHeightField.RegisterValueChangedCallback(e => _furnitureController.SetLegHeight(e.newValue * 0.01f));
         }
 
         void AddColorButton()

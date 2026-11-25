@@ -163,21 +163,21 @@ namespace ApartmentDeco
 
             if (furniture.Shape == Shape.Rectangle)
             {
-                furniture.Width = _sizeFields[0].value;
-                furniture.Height = _sizeFields[1].value;
+                furniture.Width = _sizeFields[0].value * 0.01f;
+                furniture.Height = _sizeFields[1].value * 0.01f;
             }
 
             if (furniture.Shape == Shape.Circle)
             {
-                furniture.Width = _sizeFields[0].value;
+                furniture.Width = _sizeFields[0].value * 0.01f;
             }
 
             if (furniture.Shape == Shape.L)
             {
-                furniture.Width = _sizeFields[0].value;
-                furniture.Height = _sizeFields[1].value;
-                furniture.LegWidth = _sizeFields[2].value;
-                furniture.LegHeight = _sizeFields[3].value;
+                furniture.Width = _sizeFields[0].value * 0.01f;
+                furniture.Height = _sizeFields[1].value * 0.01f;
+                furniture.LegWidth = _sizeFields[2].value * 0.01f;
+                furniture.LegHeight = _sizeFields[3].value * 0.01f;
             }
 
             GameManager.Instance.CreateFurniture(furniture);

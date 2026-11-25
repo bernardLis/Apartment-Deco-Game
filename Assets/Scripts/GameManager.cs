@@ -28,7 +28,17 @@ namespace ApartmentDeco
         public void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            Load(File.ReadAllText(Application.persistentDataPath + "/save.txt"));
+            if (!File.Exists(Application.persistentDataPath + "/save.txt"))
+            {
+                TextAsset ta = (TextAsset)Resources.Load("DefaultSave");
+                if (ta == null) return;
+                Load(ta.text);
+            }
+            else
+            {
+                Load(File.ReadAllText(Application.persistentDataPath + "/save.txt"));
+            }
+
             StartCoroutine(SaveCoroutine());
             StartCoroutine(DisplayInfoCoroutine());
         }
@@ -333,7 +343,7 @@ namespace ApartmentDeco
                 Furniture furniture = ScriptableObject.CreateInstance<Furniture>();
                 furniture.LoadFromData(fd);
                 CreateFurniture(furniture, false);
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.15f);
             }
         }
     }
